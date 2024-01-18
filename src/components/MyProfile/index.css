@@ -1,0 +1,169 @@
+.ny-profile-bg {
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.my-profile-large-contents {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-top {
+  width: 80%;
+  margin-top: auto;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.my-profile-img {
+  height: 55px;
+  width: 55px;
+  border-radius: 18px;
+}
+
+.my-profile-details {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.my-profile-name {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #262626;
+}
+
+.my-profile-status-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.my-profile-status-content {
+  color: #262626;
+  font-size: 16px;
+  font-family: 'Roboto';
+  margin-right: 10px;
+}
+
+.my-profile-status-count {
+  font-weight: bold;
+}
+
+.my-profile-small-name {
+  font-size: 17px;
+  font-family: 'Roboto';
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.my-profile-description {
+  font-size: 18px;
+  font-family: 'Roboto';
+  color: #262626;
+}
+
+.my-profile-stories {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.my-profile-story {
+  height: 50px;
+  width: 50px;
+  margin: 8px;
+  list-style-type: none;
+}
+
+.my-profile-story-img {
+  height: 35px;
+  width: 35px;
+  border-radius: 18px;
+}
+
+.line {
+  background: #c6c6c8;
+}
+
+.my-profile-posts-heading-container {
+  margin-top: 13px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.my-posts-heading {
+  font-family: 'Roboto';
+  color: black;
+  font-size: 18px;
+}
+
+.my-profile-posts-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.my-profile-post {
+  width: 30%;
+  margin: 10px;
+  list-style-type: none;
+}
+
+.my-profile-post-img {
+  height: 100%;
+}
+
+.my-profile-small-contents {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .my-profile-small-contents {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .my-profile-small-top {
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .my-profile-img-status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+  }
+}
