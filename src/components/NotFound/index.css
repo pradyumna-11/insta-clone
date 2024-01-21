@@ -1,0 +1,54 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.not-found-img {
+  height: 300px;
+  width: 300px;
+}
+
+.not-found-heading {
+  font-size: 22px;
+  font-family: 'Roboto';
+  margin-top: 7px;
+}
+
+.not-found-description {
+  color: #989898;
+  font-size: 17px;
+  font-family: 'Roboto';
+  text-align: center;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.home-page-button {
+  height: 38px;
+  width: 150px;
+  background-color: #4094ef;
+  color: #ffffff;
+  font-size: 17px;
+  font-family: 'Roboto';
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.not-found-link-style {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .not-found-img {
+    height: 200px;
+    min-width: 100%;
+    max-width: 200px;
+  }
+}

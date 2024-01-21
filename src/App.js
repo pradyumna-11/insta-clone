@@ -1,13 +1,15 @@
 import Cookies from 'js-cookie'
 import {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import Login from './components/Login'
 import Home from './components/Home'
+import NotFound from './components/NotFound'
 import InstaShareContext from './components/InstaShareContext'
 
 import './App.css'
 import ProtectedRoute from './components/ProtectedRoute'
 import MyProfile from './components/MyProfile'
+import UserProfile from './components/UserProfile'
 
 const activeTabConst = {
   home: 'HOME',
@@ -77,6 +79,9 @@ class App extends Component {
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/my-profile" component={MyProfile} />
           <Route exact path="/login" component={Login} />
+          <ProtectedRoute exact path="/users/:userId" component={UserProfile} />
+          <Route exact path="/bad-path" component={NotFound} />
+          <Redirect to="/bad-path" />
         </Switch>
       </InstaShareContext.Provider>
     )

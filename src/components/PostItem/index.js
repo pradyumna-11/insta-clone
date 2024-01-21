@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {BsHeart} from 'react-icons/bs'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
@@ -9,6 +10,7 @@ const PostItem = props => {
   const {postItemDetails} = props
   const {
     postId,
+    userId,
     userName,
     profilePic,
     postImageUrl,
@@ -23,6 +25,7 @@ const PostItem = props => {
       {value => {
         const {changeLikeStatus, likedPostsId} = value
         const postIndex = likedPostsId.indexOf(postId)
+        const finalLikesCount = postIndex === -1 ? likesCount : likesCount + 1
         return (
           <li className="post-card">
             <div className="post-card-top">
@@ -31,7 +34,11 @@ const PostItem = props => {
                 alt="post author profile"
                 className="post-card-profile-pic"
               />
-              <p className="post-username">{userName}</p>
+              <p className="post-username">
+                <Link to={`/users/${userId}`} className="username-link-style">
+                  {userName}
+                </Link>
+              </p>
             </div>
             <img src={postImageUrl} alt="post" className="post-img" />
             <div className="post-card-details-section">
@@ -41,6 +48,7 @@ const PostItem = props => {
                     className="like-button"
                     type="button"
                     onClick={() => changeLikeStatus(postId, false)}
+                    testid="unLikeIcon"
                   >
                     a<FcLike size={25} />
                   </button>
@@ -49,6 +57,7 @@ const PostItem = props => {
                     type="button"
                     className="like-button"
                     onClick={() => changeLikeStatus(postId, true)}
+                    testid="likeIcon"
                   >
                     a<BsHeart size={25} />
                   </button>
@@ -61,7 +70,7 @@ const PostItem = props => {
                   a <BiShareAlt size={25} />
                 </button>
               </div>
-              <p className="likes-count">{likesCount} likes</p>
+              <p className="likes-count">{finalLikesCount} likes</p>
               <p className="caption">{postCaption}</p>
               <ul className="comments-container">
                 {comments.map(each => (

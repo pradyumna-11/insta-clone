@@ -11,7 +11,7 @@ const Header = props => {
   const logoutUser = () => {
     Cookies.remove('jwt_token')
     const {history} = props
-    history.push('/login')
+    history.replace('/login')
   }
   const searchClicked = () => {
     searchCall()
@@ -39,11 +39,14 @@ const Header = props => {
           <nav className="navbar">
             <div className="nav-large">
               <div className="nav-large-left">
-                <img
-                  src="https://res.cloudinary.com/daxizvsge/image/upload/v1705303029/logo_p5ezce.png"
-                  alt="website logo"
-                  className="header-logo"
-                />
+                <Link to="/" className="link-logo">
+                  <img
+                    src="https://res.cloudinary.com/daxizvsge/image/upload/v1705303029/logo_p5ezce.png"
+                    alt="website logo"
+                    className="header-logo"
+                  />
+                </Link>
+
                 <h1 className="header-heading">Insta Share</h1>
               </div>
               <div className="nav-large-right">
@@ -59,12 +62,16 @@ const Header = props => {
                     type="button"
                     className="search-button"
                     onClick={searchClicked}
+                    testid="searchIcon"
                   >
                     a <FaSearch size={14} color="#989898" />
                   </button>
                 </div>
                 <ul className="nav-items-container">
-                  <li className="nav-item">
+                  <li
+                    className="nav-item"
+                    onClick={() => changeActiveTab('HOME')}
+                  >
                     <Link
                       className={
                         activeTab === 'HOME'
@@ -76,7 +83,10 @@ const Header = props => {
                       Home
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li
+                    className="nav-item"
+                    onClick={() => changeActiveTab('PROFILE')}
+                  >
                     <Link
                       className={
                         activeTab === 'PROFILE'

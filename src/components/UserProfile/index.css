@@ -1,9 +1,9 @@
-.my-profile-bg {
+.user-profile-bg {
   min-height: 100vh;
   max-height: 100%;
 }
 
-.my-profile-large-contents {
+.user-profile-large-contents {
   margin-top: auto;
   width: 100%;
   display: flex;
@@ -12,7 +12,7 @@
   align-items: center;
 }
 
-.profile-top {
+.user-profile-top {
   width: 80%;
   margin-top: auto;
   margin-bottom: 10px;
@@ -22,14 +22,14 @@
   align-items: flex-start;
 }
 
-.my-profile-img {
+.user-profile-img {
   height: 200px;
   width: 200px;
   border-radius: 18px;
   align-self: center;
 }
 
-.my-profile-details {
+.user-profile-details {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -39,13 +39,13 @@
   margin-left: 40px;
 }
 
-.my-profile-name {
+.user-profile-name {
   font-size: 20px;
   font-family: 'Roboto';
   color: #262626;
 }
 
-.my-profile-status-container {
+.user-profile-status-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -53,41 +53,39 @@
   width: 100%;
 }
 
-.my-profile-status-content {
+.user-profile-status-content {
   color: #262626;
   font-size: 16px;
   font-family: 'Roboto';
   margin-right: 20px;
 }
 
-.my-profile-status-count {
+.user-profile-status-count {
   font-weight: bold;
   margin-right: 5px;
 }
 
-.my-profile-small-name {
+.user-profile-small-name {
   font-size: 17px;
   font-family: 'Roboto';
   color: #262626;
   margin-bottom: 4px;
-  font-weight: normal;
 }
 
-.my-profile-user-id {
+.user-profile-id {
   font-size: 17px;
   font-family: 'Roboto';
   color: #262626;
   margin-bottom: 4px;
-  font-weight: normal;
 }
 
-.my-profile-description {
+.user-profile-description {
   font-size: 18px;
   font-family: 'Roboto';
   color: #262626;
 }
 
-.my-profile-stories {
+.user-profile-stories {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -96,7 +94,7 @@
   margin-top: 15px;
 }
 
-.my-profile-story {
+.user-profile-story {
   height: 86px;
   width: 86px;
   list-style-type: none;
@@ -107,7 +105,7 @@
   margin-right: 40px;
 }
 
-.my-profile-story-img {
+.user-profile-story-img {
   height: 78px;
   width: 78px;
   border-radius: 40px;
@@ -120,7 +118,7 @@
   width: 80%;
 }
 
-.my-profile-posts-heading-container {
+.user-profile-posts-heading-container {
   width: 80%;
   margin-top: 13px;
   margin-bottom: 5px;
@@ -130,14 +128,14 @@
   align-items: center;
 }
 
-.my-posts-heading {
+.user-posts-heading {
   font-family: 'Roboto';
   color: black;
   font-size: 18px;
   margin-left: 12px;
 }
 
-.my-profile-posts-container {
+.user-profile-posts-container {
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -148,19 +146,19 @@
   flex-wrap: wrap;
 }
 
-.my-profile-post {
+.user-profile-post {
   width: 30%;
   margin-right: 10px;
   margin-bottom: 10px;
   list-style-type: none;
 }
 
-.my-profile-post-img {
+.user-profile-post-img {
   width: 100%;
   height: 100%;
 }
 
-.my-profile-small-top {
+.user-profile-small-top {
   display: none;
 }
 
@@ -180,11 +178,11 @@
 }
 
 @media screen and (max-width: 768px) {
-  .profile-top {
+  .user-profile-top {
     display: none;
   }
 
-  .my-profile-small-top {
+  .user-profile-small-top {
     padding: 12px;
     width: 100%;
     display: flex;
@@ -192,7 +190,7 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
-  .my-profile-img-status-container {
+  .user-profile-img-status-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -202,27 +200,27 @@
     margin-bottom: 10px;
   }
 
-  .my-profile-status-content {
+  .user-profile-status-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  .my-profile-status-count {
+  .user-profile-status-count {
     margin-right: 0px;
   }
-  .my-profile-status-container {
+  .user-profile-status-container {
     margin-left: 20px;
   }
 
-  .my-profile-img {
+  .user-profile-img {
     height: 90px;
     width: 90px;
     border-radius: 16px;
   }
 
-  .my-profile-stories {
+  .user-profile-stories {
     width: 100%;
     padding: 0px;
     margin: 0px;
@@ -232,12 +230,12 @@
     width: 100%;
   }
 
-  .my-profile-posts-heading-container {
+  .user-profile-posts-heading-container {
     width: 100%;
     padding-left: 20px;
   }
 
-  .my-profile-posts-container {
+  .user-profile-posts-container {
     width: 100%;
     padding: 0px;
     flex-wrap: wrap;

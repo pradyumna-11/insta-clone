@@ -15,6 +15,13 @@ const constHomePageStatus = {
   failure: 'FAILURE',
 }
 
+const constSearchPageStatus = {
+  initial: 'INITIAL',
+  loading: 'LOADING',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
+
 class Home extends Component {
   state = {
     posts: [],
@@ -24,7 +31,7 @@ class Home extends Component {
     searchInput: '',
     searchPosts: [],
     searchCalled: false,
-    searchLoader: false,
+    searchPageStatus: constSearchPageStatus.initial,
   }
 
   componentDidMount() {
@@ -100,7 +107,7 @@ class Home extends Component {
   getSearchResults = async () => {
     const {searchInput} = this.state
     const token = Cookies.get('jwt_token')
-    this.setState({searchLoader: true})
+    this.setState({searchPageStatus: constSearchPageStatus.loading})
     const options = {
       method: 'GET',
       headers: {
@@ -128,7 +135,12 @@ class Home extends Component {
         })),
         createdAt: each.created_at,
       }))
-      this.setState({searchPosts, searchLoader: false})
+      this.setState({
+        searchPosts,
+        searchPageStatus: constSearchPageStatus.success,
+      })
+    } else {
+      this.setState({searchPageStatus: constSearchPageStatus.failure})
     }
   }
 
@@ -153,6 +165,10 @@ class Home extends Component {
     this.getStoryDetails()
   }
 
+  tryAgainSearchPage = () => {
+    this.getSearchResults()
+  }
+
   renderHomePageStoryFailure = () => (
     <div className="failure-container">
       <img
@@ -160,7 +176,7 @@ class Home extends Component {
         alt="failure view"
         className="failure-img"
       />
-      <p className="failure-txt">Something went wrong.Please try again.</p>
+      <p className="failure-txt">Something went wrong. Please try again</p>
       <button
         className="try-again-button"
         type="button"
@@ -183,7 +199,7 @@ class Home extends Component {
   }
 
   renderHomePageLoader = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
@@ -195,7 +211,7 @@ class Home extends Component {
         alt="failure view"
         className="failure-img"
       />
-      <p className="failure-txt">Something went wrong.Please try again.</p>
+      <p className="failure-txt">Something went wrong. Please try again</p>
       <button
         className="try-again-button"
         type="button"
@@ -206,54 +222,80 @@ class Home extends Component {
     </div>
   )
 
+  renderSearchPageFailure = () => (
+    <div className="failure-container">
+      <img
+        src="https://res.cloudinary.com/daxizvsge/image/upload/v1705386860/alert-triangle_wng4nt.png"
+        alt="failure view"
+        className="failure-img"
+      />
+      <p className="failure-txt">Something went wrong. Please try again</p>
+      <button
+        className="try-again-button"
+        type="button"
+        onClick={this.tryAgainSearchPage}
+      >
+        Try again
+      </button>
+    </div>
+  )
+
   renderSearchResults = () => {
-    const {searchInput, searchPosts, searchLoader} = this.state
+    const {searchPosts} = this.state
     return (
       <div className="search-results-container">
         <h1 className="search-results-heading">Search Results</h1>
-        <div className="search-results-search-container">
-          <input
-            className="search"
-            type="search"
-            placeholder="Enter something to search"
-            onChange={this.changeSearchInput}
-            value={searchInput}
-          />
-          <button
-            className="search-results-search-button"
-            type="button"
-            onClick={this.callSearchResults}
-          >
-            a<FaSearch size={25} />
-          </button>
-        </div>
-        {searchLoader === true ? (
-          this.renderHomePageLoader()
+
+        {searchPosts.length === 0 ? (
+          <div className="search-not-found">
+            <img
+              src="https://res.cloudinary.com/dziwdneks/image/upload/v1675513323/SearchNotFound_ntqrqa.png"
+              alt="search not found"
+              className="search-not-found-img"
+            />
+            <h1 className="search-not-found-heading">Search not found</h1>
+            <p className="search-not-found-text">
+              Try different keyword or search again
+            </p>
+          </div>
         ) : (
-          <>
-            {searchPosts.length === 0 ? (
-              <div className="search-not-found">
-                <img
-                  src="https://res.cloudinary.com/dziwdneks/image/upload/v1675513323/SearchNotFound_ntqrqa.png"
-                  alt="search not found"
-                  className="search-not-found-img"
-                />
-                <h1 className="search-not-found-heading">Search not found</h1>
-                <p className="search-not-found-text">
-                  Try different keyword or search again
-                </p>
-              </div>
-            ) : (
-              <ul className="search-results-posts-container">
-                {searchPosts.map(each => (
-                  <PostItem key={each.postId} postItemDetails={each} />
-                ))}
-              </ul>
-            )}
-          </>
+          <ul className="search-results-posts-container">
+            {searchPosts.map(each => (
+              <PostItem key={each.postId} postItemDetails={each} />
+            ))}
+          </ul>
         )}
       </div>
     )
+  }
+
+  renderSearchPageInitial = () => (
+    <div className="search-initial-container">
+      <img
+        src="https://res.cloudinary.com/daxizvsge/image/upload/v1705640132/Frame_1473_zlpojf.png"
+        alt="search initial"
+        className="search-initial-img"
+      />
+      <p className="search-initial-description">
+        Search Results will be appear here
+      </p>
+    </div>
+  )
+
+  renderSearchPage = () => {
+    const {searchPageStatus} = this.state
+    switch (searchPageStatus) {
+      case constSearchPageStatus.initial:
+        return this.renderSearchPageInitial()
+      case constSearchPageStatus.loading:
+        return this.renderHomePageLoader()
+      case constSearchPageStatus.success:
+        return this.renderSearchResults()
+      case constSearchPageStatus.failure:
+        return this.renderSearchPageFailure()
+      default:
+        return this.renderHomePageLoader()
+    }
   }
 
   renderHomePageStorySuccess = () => {
@@ -294,7 +336,7 @@ class Home extends Component {
           <div className="home-story" key={each.userId}>
             <img
               src={each.storyUrl}
-              alt={each.userName}
+              alt="user story"
               className="home-story-img"
             />
             <p className="story-name">{each.username}</p>
@@ -344,7 +386,26 @@ class Home extends Component {
         />
         <div className="home-contents">
           {searchCalled === true ? (
-            this.renderSearchResults()
+            <>
+              <div className="search-results-search-container">
+                <input
+                  className="search"
+                  type="search"
+                  placeholder="Search Caption"
+                  onChange={this.changeSearchInput}
+                  value={searchInput}
+                />
+                <button
+                  className="search-results-search-button"
+                  type="button"
+                  onClick={this.callSearchResults}
+                  testid="searchIcon"
+                >
+                  a<FaSearch size={20} />
+                </button>
+              </div>
+              {this.renderSearchPage()}
+            </>
           ) : (
             <>
               <div className="stories-slick-container">
