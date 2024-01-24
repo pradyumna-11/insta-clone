@@ -100,47 +100,16 @@ class MyProfile extends Component {
     return (
       <>
         <div className="profile-top">
-          <img
-            src={myProfileDetails.profilePic}
-            alt="my profile"
-            className="my-profile-img"
-          />
-          <div className="my-profile-details">
+          <div className="my-profile-heading-container">
             <h1 className="my-profile-name">{myProfileDetails.userName}</h1>
-            <div className="my-profile-status-container">
-              <p className="my-profile-status-content">
-                <span className="my-profile-status-count">
-                  {myProfileDetails.postsCount}
-                </span>
-                posts
-              </p>
-              <p className="my-profile-status-content">
-                <span className="my-profile-status-count">
-                  {myProfileDetails.followersCount}
-                </span>
-                followers
-              </p>
-              <p className="my-profile-status-content">
-                <span className="my-profile-status-count">
-                  {myProfileDetails.followingCount}
-                </span>
-                following
-              </p>
-            </div>
-            <p className="my-profile-user-id">{myProfileDetails.userName}</p>
-            <p className="my-profile-description">
-              {myProfileDetails.myProfileBio}
-            </p>
           </div>
-        </div>
-        <div className="my-profile-small-top">
-          <h1 className="my-profile-small-name">{myProfileDetails.userName}</h1>
-          <div className="my-profile-img-status-container">
+          <div className="my-profile-img-status-containers">
             <img
               src={myProfileDetails.profilePic}
               alt="my profile"
               className="my-profile-img"
             />
+
             <div className="my-profile-status-container">
               <p className="my-profile-status-content">
                 <span className="my-profile-status-count">
@@ -162,11 +131,14 @@ class MyProfile extends Component {
               </p>
             </div>
           </div>
-          <p className="my-profile-user-id">{myProfileDetails.userId}</p>
-          <p className="my-profile-description">
-            {myProfileDetails.myProfileBio}
-          </p>
+          <div className="my-profile-bio-container">
+            <p className="my-profile-user-id">{myProfileDetails.userId}</p>
+            <p className="my-profile-description">
+              {myProfileDetails.myProfileBio}
+            </p>
+          </div>
         </div>
+
         <ul className="my-profile-stories">
           {myProfileDetails.myProfileStories.map(each => (
             <li key={each.storyId} className="my-profile-story">

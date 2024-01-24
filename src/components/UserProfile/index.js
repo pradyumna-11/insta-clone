@@ -70,58 +70,25 @@ class UserProfile extends Component {
   }
 
   tryAgainUserProfilePage = () => {
-    this.getMyProfileDetails()
+    this.getUserProfileDetails()
   }
 
   renderUserProfilePageLoader = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
 
   renderUserProfilePageSuccess = () => {
     const {userProfileDetails} = this.state
+    console.log(userProfileDetails.userBio)
     return (
       <>
         <div className="user-profile-top">
-          <img
-            src={userProfileDetails.userProfilePic}
-            alt="user profile"
-            className="user-profile-img"
-          />
-          <div className="user-profile-details">
+          <div className="user-profile-heading-container">
             <h1 className="user-profile-name">{userProfileDetails.userName}</h1>
-            <div className="user-profile-status-container">
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
-                  {userProfileDetails.userPostsCount}
-                </span>
-                posts
-              </p>
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
-                  {userProfileDetails.userFollowersCount}
-                </span>
-                followers
-              </p>
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
-                  {userProfileDetails.userFollowingCount}
-                </span>
-                following
-              </p>
-            </div>
-            <p className="user-profile-id">{userProfileDetails.userId}</p>
-            <p className="user-profile-description">
-              {userProfileDetails.userProfileBio}
-            </p>
           </div>
-        </div>
-        <div className="user-profile-small-top">
-          <h1 className="user-profile-small-name">
-            {userProfileDetails.userName}
-          </h1>
-          <div className="user-profile-img-status-container">
+          <div className="user-profile-img-status-containers">
             <img
               src={userProfileDetails.userProfilePic}
               alt="user profile"
@@ -148,10 +115,12 @@ class UserProfile extends Component {
               </p>
             </div>
           </div>
-          <p className="user-profile-id">{userProfileDetails.userId}</p>
-          <p className="user-profile-description">
-            {userProfileDetails.userProfileBio}
-          </p>
+          <div className="user-profile-bio-container">
+            <p className="user-profile-id">{userProfileDetails.userId}</p>
+            <p className="user-profile-description">
+              {userProfileDetails.userBio}
+            </p>
+          </div>
         </div>
         <ul className="user-profile-stories">
           {userProfileDetails.userProfileStories.map(each => (
@@ -172,7 +141,7 @@ class UserProfile extends Component {
         {userProfileDetails.userPostsCount === 0 ? (
           <div className="no-posts-container">
             <BiCamera size={40} />
-            <h1 className="no-posts-content">No Posts Yet</h1>
+            <h1 className="no-posts-content">No Posts</h1>
           </div>
         ) : (
           <ul className="user-profile-posts-container">
@@ -198,7 +167,7 @@ class UserProfile extends Component {
         alt="failure view"
         className="failure-img"
       />
-      <p className="failure-txt">Something went wrong.Please try again.</p>
+      <p className="failure-txt">Something went wrong. Please try again</p>
       <button
         className="try-again-button"
         type="button"

@@ -17,7 +17,7 @@
   margin-top: auto;
   margin-bottom: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
@@ -29,6 +29,13 @@
   align-self: center;
 }
 
+.my-profile-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 40%;
+}
+
 .my-profile-details {
   display: flex;
   flex-direction: column;
@@ -37,6 +44,14 @@
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: 40px;
+}
+
+.my-profile-img-status-containers {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 250px;
 }
 
 .my-profile-name {
@@ -51,6 +66,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  margin-left: 40px;
 }
 
 .my-profile-status-content {
@@ -71,6 +87,14 @@
   color: #262626;
   margin-bottom: 4px;
   font-weight: normal;
+}
+
+.my-profile-bio-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 45%;
 }
 
 .my-profile-user-id {
@@ -180,8 +204,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  .profile-top {
-    display: none;
+  .my-profile-top {
+    width: 100%;
   }
 
   .my-profile-small-top {
@@ -241,5 +265,25 @@
     width: 100%;
     padding: 0px;
     flex-wrap: wrap;
+  }
+
+  .my-profile-bio-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .my-profile-heading-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .my-profile-img-status-containers {
+    height: 120px;
+    width: 100%;
   }
 }
