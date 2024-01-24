@@ -81,7 +81,6 @@ class UserProfile extends Component {
 
   renderUserProfilePageSuccess = () => {
     const {userProfileDetails} = this.state
-    console.log(userProfileDetails.userBio)
     return (
       <>
         <div className="user-profile-top">
@@ -138,7 +137,7 @@ class UserProfile extends Component {
           <BsGrid3X3 size={25} />
           <h1 className="user-posts-heading">Posts</h1>
         </div>
-        {userProfileDetails.userPostsCount === 0 ? (
+        {userProfileDetails.userProfilePosts.length === 0 ? (
           <div className="no-posts-container">
             <BiCamera size={40} />
             <h1 className="no-posts-content">No Posts</h1>
