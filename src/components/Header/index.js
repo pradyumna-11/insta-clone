@@ -39,7 +39,7 @@ const Header = props => {
           <nav className="navbar">
             <div className="nav-large">
               <div className="nav-large-left">
-                <Link to="/" className="link-logo">
+                <Link to="/" className="link-logo out ">
                   <img
                     src="https://res.cloudinary.com/daxizvsge/image/upload/v1705303029/logo_p5ezce.png"
                     alt="website logo"
@@ -62,7 +62,7 @@ const Header = props => {
                     type="button"
                     className="search-button"
                     onClick={searchClicked}
-                    testid="searchIcon"
+                    data-testid="searchIcon"
                   >
                     a <FaSearch size={14} color="#989898" />
                   </button>

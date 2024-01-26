@@ -199,7 +199,7 @@ class Home extends Component {
   }
 
   renderHomePageLoader = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container" data-testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
@@ -399,7 +399,7 @@ class Home extends Component {
                   className="search-results-search-button"
                   type="button"
                   onClick={this.callSearchResults}
-                  testid="searchIcon"
+                  data-testid="searchIcon"
                 >
                   a<FaSearch size={20} />
                 </button>

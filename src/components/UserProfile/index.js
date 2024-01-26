@@ -74,7 +74,7 @@ class UserProfile extends Component {
   }
 
   renderUserProfilePageLoader = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container" data-testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
@@ -84,10 +84,44 @@ class UserProfile extends Component {
     return (
       <>
         <div className="user-profile-top">
-          <div className="user-profile-heading-container">
+          <img
+            src={userProfileDetails.userProfilePic}
+            alt="user profile"
+            className="user-profile-img"
+          />
+          <div className="user-profile-details">
             <h1 className="user-profile-name">{userProfileDetails.userName}</h1>
+            <div className="user-profile-status-container">
+              <p className="user-profile-status-content">
+                <span className="user-profile-status-count">
+                  {userProfileDetails.userPostsCount}
+                </span>
+                posts
+              </p>
+              <p className="user-profile-status-content">
+                <span className="user-profile-status-count">
+                  {userProfileDetails.userFollowersCount}
+                </span>
+                followers
+              </p>
+              <p className="user-profile-status-content">
+                <span className="user-profile-status-count">
+                  {userProfileDetails.userFollowingCount}
+                </span>
+                following
+              </p>
+            </div>
+            <p className="user-profile-id">{userProfileDetails.userId}</p>
+            <p className="user-profile-description">
+              {userProfileDetails.userProfileBio}
+            </p>
           </div>
-          <div className="user-profile-img-status-containers">
+        </div>
+        <div className="user-profile-small-top">
+          <h1 className="user-profile-small-name">
+            {userProfileDetails.userName}
+          </h1>
+          <div className="user-profile-img-status-container">
             <img
               src={userProfileDetails.userProfilePic}
               alt="user profile"
@@ -114,12 +148,10 @@ class UserProfile extends Component {
               </p>
             </div>
           </div>
-          <div className="user-profile-bio-container">
-            <p className="user-profile-id">{userProfileDetails.userId}</p>
-            <p className="user-profile-description">
-              {userProfileDetails.userBio}
-            </p>
-          </div>
+          <p className="user-profile-id">{userProfileDetails.userId}</p>
+          <p className="user-profile-description">
+            {userProfileDetails.userProfileBio}
+          </p>
         </div>
         <ul className="user-profile-stories">
           {userProfileDetails.userProfileStories.map(each => (
@@ -137,10 +169,10 @@ class UserProfile extends Component {
           <BsGrid3X3 size={25} />
           <h1 className="user-posts-heading">Posts</h1>
         </div>
-        {userProfileDetails.userProfilePosts.length === 0 ? (
+        {userProfileDetails.userPostsCount === 0 ? (
           <div className="no-posts-container">
             <BiCamera size={40} />
-            <h1 className="no-posts-content">No Posts</h1>
+            <h1 className="no-posts-content">No Posts Yet</h1>
           </div>
         ) : (
           <ul className="user-profile-posts-container">
@@ -187,7 +219,7 @@ class UserProfile extends Component {
       case userProfileConstStatus.failure:
         return this.renderUserProfileFailure()
       default:
-        return this.renderUserProfilePageLoader()
+        return null
     }
   }
 

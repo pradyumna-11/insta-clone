@@ -48,7 +48,7 @@ const PostItem = props => {
                     className="like-button"
                     type="button"
                     onClick={() => changeLikeStatus(postId, false)}
-                    testid="unLikeIcon"
+                    data-testid="unLikeIcon"
                   >
                     a<FcLike size={25} />
                   </button>
@@ -57,7 +57,7 @@ const PostItem = props => {
                     type="button"
                     className="like-button"
                     onClick={() => changeLikeStatus(postId, true)}
-                    testid="likeIcon"
+                    data-testid="likeIcon"
                   >
                     a<BsHeart size={25} />
                   </button>

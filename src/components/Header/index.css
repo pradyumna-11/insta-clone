@@ -121,6 +121,10 @@
   text-decoration: none;
 }
 
+.out {
+  outline: none;
+}
+
 @media screen and (max-width: 768px) {
   .header-logo {
     height: 40px;
