@@ -22,6 +22,7 @@ class App extends Component {
     activeSmallNav: false,
     likedPostsId: [],
     activeTab: activeTabConst.home,
+    isDark: false,
   }
 
   toggleSmallNav = value => {
@@ -30,6 +31,10 @@ class App extends Component {
 
   changeActiveTab = value => {
     this.setState({activeTab: value})
+  }
+
+  toggleTheme = () => {
+    this.setState(prevState => ({isDark: !prevState.isDark}))
   }
 
   changeLikeStatus = async (postId, value) => {
@@ -63,16 +68,18 @@ class App extends Component {
   }
 
   render() {
-    const {activeSmallNav, likedPostsId, activeTab} = this.state
+    const {activeSmallNav, likedPostsId, activeTab, isDark} = this.state
     return (
       <InstaShareContext.Provider
         value={{
           activeSmallNav,
           likedPostsId,
           activeTab,
+          isDark,
           changeActiveTab: this.changeActiveTab,
           toggleSmallNav: this.toggleSmallNav,
           changeLikeStatus: this.changeLikeStatus,
+          toggleTheme: this.toggleTheme,
         }}
       >
         <Switch>

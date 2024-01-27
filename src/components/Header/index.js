@@ -1,9 +1,11 @@
-import {FaSearch} from 'react-icons/fa'
+import {FaSearch, FaMoon} from 'react-icons/fa'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdCloseCircle} from 'react-icons/io'
+import {IoSunnyOutline} from 'react-icons/io5'
 import Cookies from 'js-cookie'
 import {withRouter, Link} from 'react-router-dom'
 import InstaShareContext from '../InstaShareContext'
+
 import './index.css'
 
 const Header = props => {
@@ -29,14 +31,23 @@ const Header = props => {
           toggleSmallNav,
           activeTab,
           changeActiveTab,
+          isDark,
+          toggleTheme,
         } = value
         const optionsClassName =
           activeSmallNav === true
             ? 'nav-small-options'
             : 'nav-small-options nav-options-close'
+        const changeTheme = () => {
+          toggleTheme()
+        }
+        const headerHeadingClassName = isDark
+          ? 'header-heading light'
+          : 'header-heading dark'
+        const navbarClassName = isDark ? 'navbar dark-bg' : 'navbar light-bg'
 
         return (
-          <nav className="navbar">
+          <nav className={navbarClassName}>
             <div className="nav-large">
               <div className="nav-large-left">
                 <Link to="/" className="link-logo out ">
@@ -47,9 +58,28 @@ const Header = props => {
                   />
                 </Link>
 
-                <h1 className="header-heading">Insta Share</h1>
+                <h1 className={headerHeadingClassName}>
+                  <Link
+                    to="/"
+                    className={isDark ? 'link-style light' : 'link-style dark'}
+                  >
+                    Insta Share
+                  </Link>
+                </h1>
               </div>
               <div className="nav-large-right">
+                <button
+                  type="button"
+                  className="theme-button"
+                  onClick={changeTheme}
+                >
+                  a
+                  {isDark ? (
+                    <FaMoon size={25} color={isDark ? '#ffffff' : '#000000'} />
+                  ) : (
+                    <IoSunnyOutline size={25} />
+                  )}
+                </button>
                 <div className="search-container">
                   <input
                     type="search"
@@ -116,7 +146,7 @@ const Header = props => {
                   alt="website logo"
                   className="header-logo"
                 />
-                <h1 className="header-heading">Insta Share</h1>
+                <h1 className={headerHeadingClassName}>Insta Share</h1>
               </div>
               <button
                 type="button"
@@ -183,11 +213,24 @@ const Header = props => {
                 Logout
               </button>
               <button
+                type="button"
+                className="theme-button"
+                onClick={changeTheme}
+              >
+                a
+                {isDark ? (
+                  <FaMoon size={25} color={isDark ? '#ffffff' : '#000000'} />
+                ) : (
+                  <IoSunnyOutline size={25} />
+                )}
+              </button>
+              <button
                 className="close-button"
                 type="button"
                 onClick={() => toggleSmallNav(false)}
               >
-                a<IoMdCloseCircle color="black" size={25} />
+                a
+                <IoMdCloseCircle color={isDark ? 'white' : 'black'} size={25} />
               </button>
             </div>
           </nav>

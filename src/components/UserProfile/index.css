@@ -177,6 +177,14 @@
   font-family: 'Roboto';
 }
 
+.light {
+  color: #ffffff;
+}
+
+.dark {
+  color: #262626;
+}
+
 @media screen and (max-width: 768px) {
   .user-profile-top {
     display: none;

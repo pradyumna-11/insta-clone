@@ -177,6 +177,15 @@
   margin-top: 5px;
   font-size: 20px;
   font-family: 'Roboto';
+  color: #262626;
+}
+
+.light {
+  color: #ffffff;
+}
+
+.dark {
+  color: #262626;
 }
 
 @media screen and (max-width: 768px) {

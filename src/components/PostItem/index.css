@@ -11,6 +11,10 @@
   background: #fff;
 }
 
+.no-border {
+  border: none;
+}
+
 .post-card-top {
   padding-left: 15px;
   display: flex;
@@ -151,8 +155,121 @@
   color: #262626;
 }
 
+.share-popup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30vh;
+  width: 400px;
+  background: #fff;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+.close-popup-button {
+  font-size: 0px;
+  width: 30px;
+  height: 30px;
+  border-width: 0px;
+  cursor: pointer;
+  outline: none;
+  align-self: flex-end;
+  background-color: transparent;
+}
+
+.popup-options-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+}
+
+.share-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'Roboto';
+  text-decoration: none;
+  color: #262626;
+  margin: 5px;
+}
+
+.add-comment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px;
+  border: 1px solid #dbdbdb;
+}
+
+.comment-input-style {
+  width: 170px;
+  background-color: transparent;
+  border-width: 0px;
+  border-style: none;
+  outline: none;
+  padding: 12px;
+}
+
+.send-button {
+  background-color: transparent;
+  border-width: 0px;
+  font-size: 0px;
+  height: 100%;
+  width: 30px;
+  outline: none;
+  cursor: pointer;
+}
+
+.light-bg {
+  background-color: #ffffff;
+}
+
+.dark-bg {
+  background-color: black;
+}
+
+.dark-border {
+  border-color: black;
+}
+
+.light-border {
+  border-color: white;
+}
+
+.dark {
+  color: #262626;
+}
+
+.light {
+  color: #ffffff;
+}
+
 @media screen and (max-width: 768px) {
   .post-img {
     height: 400px;
+  }
+
+  .share-popup-container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 20vh;
+  }
+
+  .share-option {
+    font-size: 13px;
+  }
+
+  .comment-input-style {
+    width: 90%;
   }
 }

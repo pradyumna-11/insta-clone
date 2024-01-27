@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BiCamera} from 'react-icons/bi'
 import {BsGrid3X3} from 'react-icons/bs'
+import InstaShareContext from '../InstaShareContext'
 
 import Header from '../Header'
 
@@ -79,7 +80,7 @@ class UserProfile extends Component {
     </div>
   )
 
-  renderUserProfilePageSuccess = () => {
+  renderUserProfilePageSuccess = isDark => {
     const {userProfileDetails} = this.state
     return (
       <>
@@ -90,35 +91,95 @@ class UserProfile extends Component {
             className="user-profile-img"
           />
           <div className="user-profile-details">
-            <h1 className="user-profile-name">{userProfileDetails.userName}</h1>
+            <h1
+              className={
+                isDark ? 'user-profile-name light' : 'user-profile-name dark'
+              }
+            >
+              {userProfileDetails.userName}
+            </h1>
             <div className="user-profile-status-container">
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
+              <p
+                className={
+                  isDark
+                    ? 'user-profile-status-content light'
+                    : 'user-profile-status-content dark'
+                }
+              >
+                <span
+                  className={
+                    isDark
+                      ? 'user-profile-status-count light'
+                      : 'user-profile-status-count dark'
+                  }
+                >
                   {userProfileDetails.userPostsCount}
                 </span>
                 posts
               </p>
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
+              <p
+                className={
+                  isDark
+                    ? 'user-profile-status-content light'
+                    : 'user-profile-status-content dark'
+                }
+              >
+                <span
+                  className={
+                    isDark
+                      ? 'user-profile-status-count light'
+                      : 'user-profile-status-count dark'
+                  }
+                >
                   {userProfileDetails.userFollowersCount}
                 </span>
                 followers
               </p>
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
+              <p
+                className={
+                  isDark
+                    ? 'user-profile-status-content light'
+                    : 'user-profile-status-content dark'
+                }
+              >
+                <span
+                  className={
+                    isDark
+                      ? 'user-profile-status-count light'
+                      : 'user-profile-status-count dark'
+                  }
+                >
                   {userProfileDetails.userFollowingCount}
                 </span>
                 following
               </p>
             </div>
-            <p className="user-profile-id">{userProfileDetails.userId}</p>
-            <p className="user-profile-description">
-              {userProfileDetails.userProfileBio}
+            <p
+              className={
+                isDark ? 'user-profile-id light' : 'user-profile-id dark'
+              }
+            >
+              {userProfileDetails.userId}
+            </p>
+            <p
+              className={
+                isDark
+                  ? 'user-profile-description light'
+                  : 'user-profile-description dark'
+              }
+            >
+              {userProfileDetails.userBio}
             </p>
           </div>
         </div>
         <div className="user-profile-small-top">
-          <h1 className="user-profile-small-name">
+          <h1
+            className={
+              isDark
+                ? 'user-profile-small-name light'
+                : 'user-profile-small-name dark'
+            }
+          >
             {userProfileDetails.userName}
           </h1>
           <div className="user-profile-img-status-container">
@@ -128,29 +189,77 @@ class UserProfile extends Component {
               className="user-profile-img"
             />
             <div className="user-profile-status-container">
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
+              <p
+                className={
+                  isDark
+                    ? 'user-profile-status-content light'
+                    : 'user-profile-status-content dark'
+                }
+              >
+                <span
+                  className={
+                    isDark
+                      ? 'user-profile-status-count light'
+                      : 'user-profile-status-count dark'
+                  }
+                >
                   {userProfileDetails.userPostsCount}
                 </span>
                 posts
               </p>
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
+              <p
+                className={
+                  isDark
+                    ? 'user-profile-status-content light'
+                    : 'user-profile-status-content dark'
+                }
+              >
+                <span
+                  className={
+                    isDark
+                      ? 'user-profile-status-count light'
+                      : 'user-profile-status-count dark'
+                  }
+                >
                   {userProfileDetails.userFollowersCount}
                 </span>
                 followers
               </p>
-              <p className="user-profile-status-content">
-                <span className="user-profile-status-count">
+              <p
+                className={
+                  isDark
+                    ? 'user-profile-status-content light'
+                    : 'user-profile-status-content dark'
+                }
+              >
+                <span
+                  className={
+                    isDark
+                      ? 'user-profile-status-count light'
+                      : 'user-profile-status-count dark'
+                  }
+                >
                   {userProfileDetails.userFollowingCount}
                 </span>
                 following
               </p>
             </div>
           </div>
-          <p className="user-profile-id">{userProfileDetails.userId}</p>
-          <p className="user-profile-description">
-            {userProfileDetails.userProfileBio}
+          <p
+            className={
+              isDark ? 'user-profile-id light' : 'user-profile-id dark'
+            }
+          >
+            {userProfileDetails.userId}
+          </p>
+          <p
+            className={
+              isDark
+                ? 'user-profile-description light'
+                : 'user-profile-description dark'
+            }
+          >
+            {userProfileDetails.userBio}
           </p>
         </div>
         <ul className="user-profile-stories">
@@ -166,8 +275,14 @@ class UserProfile extends Component {
         </ul>
         <hr className="line" />
         <div className="user-profile-posts-heading-container">
-          <BsGrid3X3 size={25} />
-          <h1 className="user-posts-heading">Posts</h1>
+          <BsGrid3X3 size={25} color={isDark ? 'white' : 'black'} />
+          <h1
+            className={
+              isDark ? 'user-posts-heading light' : 'user-posts-heading dark'
+            }
+          >
+            Posts
+          </h1>
         </div>
         {userProfileDetails.userPostsCount === 0 ? (
           <div className="no-posts-container">
@@ -191,14 +306,16 @@ class UserProfile extends Component {
     )
   }
 
-  renderUserProfileFailure = () => (
+  renderUserProfileFailure = isDark => (
     <div className="failure-container">
       <img
         src="https://res.cloudinary.com/daxizvsge/image/upload/v1705386860/alert-triangle_wng4nt.png"
         alt="failure view"
         className="failure-img"
       />
-      <p className="failure-txt">Something went wrong. Please try again</p>
+      <p className={isDark ? 'failure-txt light' : 'failure-txt dark'}>
+        Something went wrong. Please try again
+      </p>
       <button
         className="try-again-button"
         type="button"
@@ -209,15 +326,15 @@ class UserProfile extends Component {
     </div>
   )
 
-  renderUserProfilePage = () => {
+  renderUserProfilePage = isDark => {
     const {userProfilePageStatus} = this.state
     switch (userProfilePageStatus) {
       case userProfileConstStatus.loading:
         return this.renderUserProfilePageLoader()
       case userProfileConstStatus.success:
-        return this.renderUserProfilePageSuccess()
+        return this.renderUserProfilePageSuccess(isDark)
       case userProfileConstStatus.failure:
-        return this.renderUserProfileFailure()
+        return this.renderUserProfileFailure(isDark)
       default:
         return null
     }
@@ -225,12 +342,23 @@ class UserProfile extends Component {
 
   render() {
     return (
-      <div className="user-profile-bg">
-        <Header />
-        <div className="user-profile-large-contents">
-          {this.renderUserProfilePage()}
-        </div>
-      </div>
+      <InstaShareContext.Consumer>
+        {value => {
+          const {isDark} = value
+          return (
+            <div
+              className={
+                isDark ? 'user-profile-bg dark-bg' : 'user-profile-bg light-bg'
+              }
+            >
+              <Header />
+              <div className="user-profile-large-contents">
+                {this.renderUserProfilePage(isDark)}
+              </div>
+            </div>
+          )
+        }}
+      </InstaShareContext.Consumer>
     )
   }
 }

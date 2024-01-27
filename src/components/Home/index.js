@@ -3,6 +3,8 @@ import Cookies from 'js-cookie'
 import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
 import {FaSearch} from 'react-icons/fa'
+import {IoMdArrowRoundBack} from 'react-icons/io'
+import InstaShareContext from '../InstaShareContext'
 
 import Header from '../Header'
 import PostItem from '../PostItem'
@@ -144,6 +146,20 @@ class Home extends Component {
     }
   }
 
+  addComment = (userId, value, postId, userName) => {
+    const {posts} = this.state
+    const updatedPostsAfterComment = posts.map(each => {
+      if (each.postId === postId) {
+        return {
+          ...each,
+          comments: [...each.comments, {userName, comment: value, userId}],
+        }
+      }
+      return each
+    })
+    this.setState({posts: updatedPostsAfterComment})
+  }
+
   callSearchResults = () => {
     this.setState({searchCalled: true})
     this.getSearchResults()
@@ -169,6 +185,10 @@ class Home extends Component {
     this.getSearchResults()
   }
 
+  searchBackClicked = () => {
+    this.setState({searchCalled: false})
+  }
+
   renderHomePageStoryFailure = () => (
     <div className="failure-container">
       <img
@@ -192,7 +212,11 @@ class Home extends Component {
     return (
       <ul className="home-posts-container">
         {posts.map(each => (
-          <PostItem postItemDetails={each} key={each.postId} />
+          <PostItem
+            postItemDetails={each}
+            key={each.postId}
+            addComment={this.addComment}
+          />
         ))}
       </ul>
     )
@@ -240,11 +264,28 @@ class Home extends Component {
     </div>
   )
 
-  renderSearchResults = () => {
+  renderSearchResults = isDark => {
     const {searchPosts} = this.state
     return (
       <div className="search-results-container">
-        <h1 className="search-results-heading">Search Results</h1>
+        <div className="search-back-heading-container">
+          <button
+            className="back-button large"
+            type="button"
+            onClick={this.searchBackClicked}
+          >
+            a<IoMdArrowRoundBack size={25} color={isDark ? 'white' : 'black'} />
+          </button>
+          <h1
+            className={
+              isDark
+                ? 'search-results-heading light'
+                : 'search-results-heading dark'
+            }
+          >
+            Search Results
+          </h1>
+        </div>
 
         {searchPosts.length === 0 ? (
           <div className="search-not-found">
@@ -259,7 +300,7 @@ class Home extends Component {
             </p>
           </div>
         ) : (
-          <ul className="search-results-posts-container">
+          <ul className="search-results-posts-container bg-none">
             {searchPosts.map(each => (
               <PostItem key={each.postId} postItemDetails={each} />
             ))}
@@ -282,7 +323,7 @@ class Home extends Component {
     </div>
   )
 
-  renderSearchPage = () => {
+  renderSearchPage = isDark => {
     const {searchPageStatus} = this.state
     switch (searchPageStatus) {
       case constSearchPageStatus.initial:
@@ -290,7 +331,7 @@ class Home extends Component {
       case constSearchPageStatus.loading:
         return this.renderHomePageLoader()
       case constSearchPageStatus.success:
-        return this.renderSearchResults()
+        return this.renderSearchResults(isDark)
       case constSearchPageStatus.failure:
         return this.renderSearchPageFailure()
       default:
@@ -298,7 +339,7 @@ class Home extends Component {
     }
   }
 
-  renderHomePageStorySuccess = () => {
+  renderHomePageStorySuccess = isDark => {
     const {homeStories} = this.state
     const settings = {
       dots: false,
@@ -339,7 +380,9 @@ class Home extends Component {
               alt="user story"
               className="home-story-img"
             />
-            <p className="story-name">{each.username}</p>
+            <p className={isDark ? 'story-name light' : 'story-name dark'}>
+              {each.username}
+            </p>
           </div>
         ))}
       </Slider>
@@ -360,15 +403,15 @@ class Home extends Component {
     }
   }
 
-  renderHomePageStory = () => {
+  renderHomePageStory = isDark => {
     const {homePageStoryStatus} = this.state
     switch (homePageStoryStatus) {
       case constHomePageStatus.loading:
         return this.renderHomePageLoader()
       case constHomePageStatus.success:
-        return this.renderHomePageStorySuccess()
+        return this.renderHomePageStorySuccess(isDark)
       case constHomePageStatus.failure:
-        return this.renderHomePageStoryFailure()
+        return this.renderHomePageStoryFailure(isDark)
       default:
         return this.renderHomePageLoader()
     }
@@ -377,45 +420,66 @@ class Home extends Component {
   render() {
     const {searchInput, searchCalled} = this.state
     return (
-      <div className="home-bg">
-        <Header
-          searchCall={this.callSearchResults}
-          makeSearchChange={this.changeSearchInput}
-          searchValue={searchInput}
-          smallSearch={this.changeSearchState}
-        />
-        <div className="home-contents">
-          {searchCalled === true ? (
-            <>
-              <div className="search-results-search-container">
-                <input
-                  className="search"
-                  type="search"
-                  placeholder="Search Caption"
-                  onChange={this.changeSearchInput}
-                  value={searchInput}
-                />
-                <button
-                  className="search-results-search-button"
-                  type="button"
-                  onClick={this.callSearchResults}
-                  data-testid="searchIcon"
-                >
-                  a<FaSearch size={20} />
-                </button>
+      <InstaShareContext.Consumer>
+        {value => {
+          const {isDark} = value
+          const homeBgClassName = isDark
+            ? 'home-bg dark-bg'
+            : 'home-bg light-bg'
+          return (
+            <div className={homeBgClassName}>
+              <Header
+                searchCall={this.callSearchResults}
+                makeSearchChange={this.changeSearchInput}
+                searchValue={searchInput}
+                smallSearch={this.changeSearchState}
+              />
+              <div className="home-contents">
+                {searchCalled === true ? (
+                  <>
+                    <div className="search-results-search-container">
+                      <button
+                        className="back-button"
+                        type="button"
+                        onClick={this.searchBackClicked}
+                      >
+                        a
+                        <IoMdArrowRoundBack
+                          size={25}
+                          color={isDark ? 'white' : 'black'}
+                        />
+                      </button>
+                      <input
+                        className="search"
+                        type="search"
+                        placeholder="Search Caption"
+                        onChange={this.changeSearchInput}
+                        value={searchInput}
+                      />
+                      <button
+                        className="search-results-search-button"
+                        type="button"
+                        onClick={this.callSearchResults}
+                        data-testid="searchIcon"
+                      >
+                        a<FaSearch size={20} />
+                      </button>
+                    </div>
+                    {this.renderSearchPage(isDark)}
+                  </>
+                ) : (
+                  <>
+                    <div className="stories-slick-container">
+                      {this.renderHomePageStory(isDark)}
+                    </div>
+                    {this.renderHomePage()}
+                  </>
+                )}
               </div>
-              {this.renderSearchPage()}
-            </>
-          ) : (
-            <>
-              <div className="stories-slick-container">
-                {this.renderHomePageStory()}
-              </div>
-              {this.renderHomePage()}
-            </>
-          )}
-        </div>
-      </div>
+            </div>
+          )
+        }}
+      </InstaShareContext.Consumer>
     )
   }
 }
