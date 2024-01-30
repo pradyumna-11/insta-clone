@@ -222,6 +222,14 @@
   color: #ffffff;
 }
 
+.dark-bg {
+  background-color: black;
+}
+
+.light-bg {
+  background-color: #ffffff;
+}
+
 @media screen and (max-width: 768px) {
   .stories-slick-container {
     width: 85%;

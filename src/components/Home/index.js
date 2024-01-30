@@ -388,7 +388,11 @@ class Home extends Component {
               }
             >
               {close => (
-                <div className="story-popup">
+                <div
+                  className={
+                    isDark ? 'story-popup dark-bg' : 'story-popup light-bg'
+                  }
+                >
                   <button
                     type="button"
                     className="close-popup-button"
@@ -472,10 +476,7 @@ class Home extends Component {
                         onClick={this.searchBackClicked}
                       >
                         a
-                        <IoMdArrowRoundBack
-                          size={25}
-                          color={isDark ? 'white' : 'black'}
-                        />
+                        <IoMdArrowRoundBack size={25} color="black" />
                       </button>
                       <input
                         className="search"

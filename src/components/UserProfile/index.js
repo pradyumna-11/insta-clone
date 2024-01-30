@@ -99,7 +99,13 @@ class UserProfile extends Component {
             }
           >
             {close => (
-              <div className="user-profile-img-popup">
+              <div
+                className={
+                  isDark
+                    ? 'user-profile-img-popup dark-bg'
+                    : 'user-profile-img-popup light-bg'
+                }
+              >
                 <button
                   type="button"
                   className="close-popup-button"
@@ -223,7 +229,13 @@ class UserProfile extends Component {
               }
             >
               {close => (
-                <div className="user-profile-img-popup">
+                <div
+                  className={
+                    isDark
+                      ? 'user-profile-img-popup dark-bg'
+                      : 'user-profile-img-popup light-bg'
+                  }
+                >
                   <button
                     type="button"
                     className="close-popup-button"
@@ -331,7 +343,13 @@ class UserProfile extends Component {
                 }
               >
                 {close => (
-                  <div className="user-profile-img-popup">
+                  <div
+                    className={
+                      isDark
+                        ? 'user-profile-img-popup dark-bg'
+                        : 'user-profile-img-popup light-bg'
+                    }
+                  >
                     <button
                       type="button"
                       className="close-popup-button"

@@ -212,6 +212,14 @@
   color: #262626;
 }
 
+.dark-bg {
+  background-color: #000000;
+}
+
+.light-bg {
+  background-color: #ffffff;
+}
+
 @media screen and (max-width: 768px) {
   .profile-top {
     display: none;

@@ -116,7 +116,13 @@ class MyProfile extends Component {
             }
           >
             {close => (
-              <div className="my-profile-img-popup">
+              <div
+                className={
+                  isDark
+                    ? 'my-profile-img-popup dark-bg'
+                    : 'my-profile-img-popup light-bg'
+                }
+              >
                 <button
                   type="button"
                   className="close-popup-button"
@@ -240,7 +246,13 @@ class MyProfile extends Component {
               }
             >
               {close => (
-                <div className="my-profile-img-popup">
+                <div
+                  className={
+                    isDark
+                      ? 'my-profile-img-popup dark-bg'
+                      : 'my-profile-img-popup light-bg'
+                  }
+                >
                   <button
                     type="button"
                     className="close-popup-button"
@@ -348,7 +360,13 @@ class MyProfile extends Component {
                 }
               >
                 {close => (
-                  <div className="my-profile-img-popup">
+                  <div
+                    className={
+                      isDark
+                        ? 'my-profile-img-popup dark-bg'
+                        : 'my-profile-img-popup light-bg'
+                    }
+                  >
                     <button
                       type="button"
                       className="close-popup-button"
