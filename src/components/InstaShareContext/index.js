@@ -5,10 +5,12 @@ const InstaShareContext = React.createContext({
   likedPostsId: [],
   activeTab: 'HOME',
   isDark: false,
+  savedPostsId: [],
   toggleTheme: () => {},
   changeActiveTab: () => {},
   toggleSmallNav: () => {},
   changeLikeStatus: () => {},
+  changeSavedPostsId: () => {},
 })
 
 export default InstaShareContext

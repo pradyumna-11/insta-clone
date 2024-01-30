@@ -178,6 +178,42 @@
   font-family: 'Roboto';
   text-align: center;
 }
+
+.close-popup-button {
+  font-size: 0px;
+  width: 50px;
+  height: 50px;
+  border-width: 0px;
+  cursor: pointer;
+  outline: none;
+  align-self: flex-end;
+  margin-right: 10px;
+}
+
+.story-popup {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #ffffff;
+}
+
+.story-popup-inner {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.story-expand-img {
+  height: 70%;
+  width: 70%;
+}
+
 .dark {
   color: #262626;
 }

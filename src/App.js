@@ -8,8 +8,10 @@ import InstaShareContext from './components/InstaShareContext'
 
 import './App.css'
 import ProtectedRoute from './components/ProtectedRoute'
-import MyProfile from './components/MyProfile'
 import UserProfile from './components/UserProfile'
+import SavedPosts from './components/SavedPosts'
+import MyProfile from './components/MyProfile'
+import LikedPostsPage from './components/LikedPostsPage'
 
 const activeTabConst = {
   home: 'HOME',
@@ -23,6 +25,7 @@ class App extends Component {
     likedPostsId: [],
     activeTab: activeTabConst.home,
     isDark: false,
+    savedPostsId: [],
   }
 
   toggleSmallNav = value => {
@@ -67,8 +70,27 @@ class App extends Component {
     }
   }
 
+  changeSavedPostsId = id => {
+    const {savedPostsId} = this.state
+    const index = savedPostsId.indexOf(id)
+    if (index === -1) {
+      this.setState(prevState => ({
+        savedPostsId: [...prevState.savedPostsId, id],
+      }))
+    } else {
+      const updatedSavedPostsIdList = savedPostsId.filter(each => each !== id)
+      this.setState({savedPostsId: [...updatedSavedPostsIdList]})
+    }
+  }
+
   render() {
-    const {activeSmallNav, likedPostsId, activeTab, isDark} = this.state
+    const {
+      activeSmallNav,
+      likedPostsId,
+      activeTab,
+      isDark,
+      savedPostsId,
+    } = this.state
     return (
       <InstaShareContext.Provider
         value={{
@@ -76,15 +98,23 @@ class App extends Component {
           likedPostsId,
           activeTab,
           isDark,
+          savedPostsId,
           changeActiveTab: this.changeActiveTab,
           toggleSmallNav: this.toggleSmallNav,
           changeLikeStatus: this.changeLikeStatus,
           toggleTheme: this.toggleTheme,
+          changeSavedPostsId: this.changeSavedPostsId,
         }}
       >
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/my-profile" component={MyProfile} />
+          <ProtectedRoute exact path="/saved-posts" component={SavedPosts} />
+          <ProtectedRoute
+            exact
+            path="/liked-posts"
+            component={LikedPostsPage}
+          />
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/users/:userId" component={UserProfile} />
           <Route exact path="/bad-path" component={NotFound} />

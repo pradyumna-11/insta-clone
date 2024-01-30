@@ -3,8 +3,11 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsGrid3X3} from 'react-icons/bs'
 import {BiCamera} from 'react-icons/bi'
+import {IoClose} from 'react-icons/io5'
+import Popup from 'reactjs-popup'
 import InstaShareContext from '../InstaShareContext'
 import Header from '../Header'
+import BottomHeader from '../BottomHeader'
 
 import './index.css'
 
@@ -58,7 +61,6 @@ class MyProfile extends Component {
           storyImage: eachStory.image,
         })),
       }
-      console.log(updatedMyProfileDetails)
       this.setState({
         myProfileDetails: updatedMyProfileDetails,
         myProfilePageStatus: myProfileConstStatus.success,
@@ -103,11 +105,37 @@ class MyProfile extends Component {
     return (
       <>
         <div className="profile-top">
-          <img
-            src={myProfileDetails.profilePic}
-            alt="my profile"
-            className="my-profile-img"
-          />
+          <Popup
+            modal
+            trigger={
+              <img
+                src={myProfileDetails.profilePic}
+                alt="my profile"
+                className="my-profile-img"
+              />
+            }
+          >
+            {close => (
+              <div className="my-profile-img-popup">
+                <button
+                  type="button"
+                  className="close-popup-button"
+                  onClick={() => close()}
+                >
+                  a
+                  <IoClose size={25} color={isDark ? 'white' : 'black'} />
+                </button>
+                <div className="my-profile-img-popup-inner">
+                  <img
+                    src={myProfileDetails.profilePic}
+                    alt="my profile"
+                    className="my-profile-popup-img-style"
+                  />
+                </div>
+              </div>
+            )}
+          </Popup>
+
           <div className="my-profile-details">
             <h1
               className={
@@ -201,11 +229,37 @@ class MyProfile extends Component {
             {myProfileDetails.userName}
           </h1>
           <div className="my-profile-img-status-container">
-            <img
-              src={myProfileDetails.profilePic}
-              alt="my profile"
-              className="my-profile-img"
-            />
+            <Popup
+              modal
+              trigger={
+                <img
+                  src={myProfileDetails.profilePic}
+                  alt="my profile"
+                  className="my-profile-img"
+                />
+              }
+            >
+              {close => (
+                <div className="my-profile-img-popup">
+                  <button
+                    type="button"
+                    className="close-popup-button"
+                    onClick={() => close()}
+                  >
+                    a
+                    <IoClose size={25} color={isDark ? 'white' : 'black'} />
+                  </button>
+                  <div className="my-profile-img-popup-inner">
+                    <img
+                      src={myProfileDetails.profilePic}
+                      alt="my profile"
+                      className="my-profile-popup-img-style"
+                    />
+                  </div>
+                </div>
+              )}
+            </Popup>
+
             <div className="my-profile-status-container">
               <p
                 className={
@@ -283,11 +337,36 @@ class MyProfile extends Component {
         <ul className="my-profile-stories">
           {myProfileDetails.myProfileStories.map(each => (
             <li key={each.storyId} className="my-profile-story">
-              <img
-                src={each.storyImage}
-                alt="my story"
-                className="my-profile-story-img"
-              />
+              <Popup
+                modal
+                trigger={
+                  <img
+                    src={each.storyImage}
+                    alt="my story"
+                    className="my-profile-story-img"
+                  />
+                }
+              >
+                {close => (
+                  <div className="my-profile-img-popup">
+                    <button
+                      type="button"
+                      className="close-popup-button"
+                      onClick={() => close()}
+                    >
+                      a
+                      <IoClose size={25} color={isDark ? 'white' : 'black'} />
+                    </button>
+                    <div className="my-profile-img-popup-inner">
+                      <img
+                        src={each.storyImage}
+                        alt="my story"
+                        className="my-profile-story-img"
+                      />
+                    </div>
+                  </div>
+                )}
+              </Popup>
             </li>
           ))}
         </ul>
@@ -358,6 +437,7 @@ class MyProfile extends Component {
               <Header />
               <div className="my-profile-large-contents">
                 {this.renderMyProfilePage(isDark)}
+                <BottomHeader />
               </div>
             </div>
           )

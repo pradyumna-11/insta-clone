@@ -1,9 +1,11 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
+import Popup from 'reactjs-popup'
 import Loader from 'react-loader-spinner'
 import {FaSearch} from 'react-icons/fa'
 import {IoMdArrowRoundBack} from 'react-icons/io'
+import {IoClose} from 'react-icons/io5'
 import InstaShareContext from '../InstaShareContext'
 
 import Header from '../Header'
@@ -375,11 +377,37 @@ class Home extends Component {
       <Slider {...settings}>
         {homeStories.map(each => (
           <div className="home-story" key={each.userId}>
-            <img
-              src={each.storyUrl}
-              alt="user story"
-              className="home-story-img"
-            />
+            <Popup
+              modal
+              trigger={
+                <img
+                  src={each.storyUrl}
+                  alt="user story"
+                  className="home-story-img"
+                />
+              }
+            >
+              {close => (
+                <div className="story-popup">
+                  <button
+                    type="button"
+                    className="close-popup-button"
+                    onClick={() => close()}
+                  >
+                    a
+                    <IoClose size={25} color={isDark ? 'white' : 'black'} />
+                  </button>
+                  <div className="story-popup-inner">
+                    <img
+                      src={each.storyUrl}
+                      alt="user story"
+                      className="story-expand-img"
+                    />
+                  </div>
+                </div>
+              )}
+            </Popup>
+
             <p className={isDark ? 'story-name light' : 'story-name dark'}>
               {each.username}
             </p>

@@ -5,7 +5,10 @@ import {
   FaWhatsappSquare,
   FaFacebookSquare,
   FaLinkedin,
+  FaRegBookmark,
+  FaBookmark,
 } from 'react-icons/fa'
+
 import {BiShareAlt} from 'react-icons/bi'
 import {FcLike} from 'react-icons/fc'
 import {IoClose, IoMail, IoSend} from 'react-icons/io5'
@@ -40,8 +43,21 @@ const PostItem = props => {
   return (
     <InstaShareContext.Consumer>
       {value => {
-        const {changeLikeStatus, likedPostsId, isDark} = value
+        const {
+          changeLikeStatus,
+          likedPostsId,
+          isDark,
+          changeSavedPostsId,
+          savedPostsId,
+        } = value
         const postIndex = likedPostsId.indexOf(postId)
+        const savedPostIndex = savedPostsId.indexOf(postId)
+        const savedIcon =
+          savedPostIndex === -1 ? (
+            <FaRegBookmark size={25} color={isDark ? 'white' : 'black'} />
+          ) : (
+            <FaBookmark size={25} color={isDark ? 'white' : 'black'} />
+          )
         const finalLikesCount = postIndex === -1 ? likesCount : likesCount + 1
         return (
           <li
@@ -188,7 +204,15 @@ const PostItem = props => {
                     </>
                   )}
                 </Popup>
+                <button
+                  type="button"
+                  className="save-button"
+                  onClick={() => changeSavedPostsId(postId)}
+                >
+                  a {savedIcon}
+                </button>
               </div>
+
               <p className={isDark ? 'likes-count light' : 'likes-count dark'}>
                 {finalLikesCount} likes
               </p>
